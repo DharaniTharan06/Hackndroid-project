@@ -37,7 +37,22 @@ This project was developed with a strong focus on clean UI, seamless navigation,
 ---
 
 ## 📂 File Structure
-
+├── breakfast.html
+├── details.html
+├── dinner.html
+├── fitness_create.html
+├── fitness_dash.html
+├── fitness_styles.css
+├── food.html
+├── index.html
+├── landing.html
+├── login.html
+├── lunch.html
+├── menu.html
+├── quiz.html
+├── signup.html
+├── sleep.html
+└── snacks.html
 ### 🚀 Getting Started
 
 To run the project locally:
