@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        input[type="date"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .progress-container {
+            background: #ddd;
+            border-radius: 10px;
+            height: 15px;
+            width: 100%;
+            margin: 10px 0;
+            position: relative;
+        }
+        .progress-bar {
+            height: 100%;
+            border-radius: 10px;
+            background: #4caf50;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        .meal-btn {
+            width: 100%;
+            padding: 12px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            background: #2196F3;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            padding-left: 15px;
+        }
+        .meal-btn:hover {
+            background: #1976D2;
+        }
+        .meal-btn img {
+            width: 24px;
+            height: 24px;
+        }
+        .message {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .warning {
+            color: #d32f2f;
+        }
+        .healthy {
+            color: #388e3c;
+        }
+        .footer {
+            margin-top: 20px;
+        }
+        .footer a img {
+            width: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="title">Food Tracker</h2>
+    <div class="container">
+        <input type="date" id="dateInput">
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <p><span id="calories">0</span> kcal</p>
+        <p class="message warning" id="warningMsg">⚠️ Under Nutritioned</p>
+        <p class="message healthy" id="healthyMsg" style="display: none;">✅ You're on track!</p>
+        <button class="meal-btn" onclick="navigate('breakfast.html')">
+            <img src="https://img.icons8.com/ios-filled/50/apple.png" alt="Breakfast">
+            <span>Breakfast</span>
+        </button>
+        <button class="meal-btn" onclick="navigate('lunch.html')">
+            <img src="https://img.icons8.com/ios-filled/50/bowl-with-spoon.png" alt="Lunch">
+            <span>Lunch</span>
+        </button>
+        <button class="meal-btn" onclick="navigate('snacks.html')">
+            <img src="https://img.icons8.com/ios-filled/50/cookie.png" alt="Snacks">
+            <span>Snacks</span>
+        </button>
+        <button class="meal-btn" onclick="navigate('dinner.html')">
+            <img src="https://img.icons8.com/ios-filled/50/pizza.png" alt="Dinner">
+            <span>Dinner</span>
+        </button>
+    </div>
+    <div class="footer">
+        <a href="index.html">
+            <img src="https://img.icons8.com/ios-filled/50/home.png" alt="Home">
+        </a>
+    </div>
+    <script>
+        let totalCalories = 0;
+        const calorieGoal = 3000;
+
+        function getStoredCalories() {
+            let breakfast = parseInt(localStorage.getItem("breakfastCalories")) || 0;
+            let lunch = parseInt(localStorage.getItem("lunchCalories")) || 0;
+            let snacks = parseInt(localStorage.getItem("snacksCalories")) || 0;
+            let dinner = parseInt(localStorage.getItem("dinnerCalories")) || 0;
+            totalCalories = breakfast + lunch + snacks + dinner;
+            document.getElementById("calories").innerText = totalCalories;
+            document.getElementById("progressBar").style.width = (totalCalories / calorieGoal) * 100 + "%";
+            document.getElementById("warningMsg").style.display = totalCalories < 1000 ? "block" : "none";
+            document.getElementById("healthyMsg").style.display = totalCalories >= 1000 ? "block" : "none";
+        }
+        function navigate(page) {
+            window.location.href = page;
+        }
+        window.onload = getStoredCalories;
+    </script>
+</body>
+</html>

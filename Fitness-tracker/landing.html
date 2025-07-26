@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthHub - Your Wellness Platform</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #e0f2fe;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 10;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            height: 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #0284c7;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .login-link {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: #4b5563;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .login-link:hover {
+            color: #0284c7;
+        }
+
+        .signup-link {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            background-color: #0284c7;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .signup-link:hover {
+            background-color: #0369a1;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 96px;
+            padding-bottom: 64px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.15;
+        }
+
+        .hero h1 {
+            font-size: 3.75rem;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            max-width: 768px;
+            margin: 0 auto;
+            font-size: 1.25rem;
+            color: #4b5563;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .primary-button {
+            background-color: #0284c7;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .primary-button:hover {
+            background-color: #0369a1;
+        }
+
+        .secondary-button {
+            background-color: white;
+            color: #0284c7;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .secondary-button:hover {
+            background-color: #f0f9ff;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 3rem 0;
+        }
+
+        .features-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .features-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .features-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.2s;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon {
+            color: #0284c7;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: #4b5563;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-link {
+            color: #4b5563;
+            transition: color 0.2s;
+        }
+
+        .social-link:hover {
+            color: #0284c7;
+        }
+
+        .copyright {
+            color: #4b5563;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <i data-lucide="brain"></i>
+                <span>HealthHub</span>
+            </div>
+            <div class="nav-links">
+                <a href="login.html" class="login-link">
+                    <i data-lucide="log-in"></i>
+                    Login
+                </a>
+                <a href="signup.html" class="signup-link">
+                    <i data-lucide="user-plus"></i>
+                    Sign Up
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=2000" alt="Wellness Background" class="hero-bg">
+        <div class="hero-container">
+            <h1>Your Complete Health & Wellness Platform</h1>
+            <p>Track your sleep, fitness, nutrition, and get AI-powered insights all in one place.</p>
+            <div class="hero-buttons">
+                <button class="primary-button">Get Started</button>
+                <button class="secondary-button">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-container">
+            <!-- Sleep Quiz -->
+            <div class="feature-card">
+                <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=800" alt="Sleep Tracking" class="feature-image">
+                <i data-lucide="moon" class="feature-icon"></i>
+                <h3>Sleep Quiz</h3>
+                <p>Take our comprehensive sleep assessment to understand your sleep patterns and receive personalized recommendations for better rest.</p>
+            </div>
+
+            <!-- Fitness Tracker -->
+            <div class="feature-card">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800" alt="Fitness Tracking" class="feature-image">
+                <i data-lucide="dumbbell" class="feature-icon"></i>
+                <h3>Fitness Tracker</h3>
+                <p>Monitor your workouts, set goals, and track your progress with our advanced fitness tracking tools.</p>
+            </div>
+
+            <!-- Food Tracker -->
+            <div class="feature-card">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800" alt="Healthy Food" class="feature-image">
+                <i data-lucide="apple" class="feature-icon"></i>
+                <h3>Food Tracker</h3>
+                <p>Log your meals, track nutrients, and get personalized dietary recommendations based on your goals.</p>
+            </div>
+
+            <!-- AI Chat Assistant -->
+            <div class="feature-card">
+                <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=800" alt="AI Assistant" class="feature-image">
+                <i data-lucide="message-square-text" class="feature-icon"></i>
+                <h3>AI Chat Assistant</h3>
+                <p>Get 24/7 support from our AI-powered health assistant for instant guidance and answers.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="social-links">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <i data-lucide="github"></i>
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <i data-lucide="facebook"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <i data-lucide="linkedin"></i>
+                </a>
+            </div>
+            <div class="copyright">
+                © 2024 HealthHub. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation to feature cards on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

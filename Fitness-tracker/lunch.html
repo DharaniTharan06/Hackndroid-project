@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunch Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e0f7fa, #b3e5fc, #e3f2fd, #b2dfdb);
+            background-size: 400% 400%;
+            animation: gradientBG 12s infinite ease-in-out;
+            position: relative;
+            padding: 20px;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .floating-icon {
+            position: absolute;
+            width: 60px;
+            opacity: 0.7;
+            animation: floatAnimation 6s infinite alternate ease-in-out;
+            z-index: 0;
+        }
+        .icon1 { top: 8%;  left: 10%; animation-delay: 0s; }
+        .icon2 { top: 42%; right: 8%;  animation-delay: 1s; }
+        .icon3 { bottom: 12%; left: 45%; animation-delay: 2s; }
+        .icon4 { bottom: 28%; right: 18%; animation-delay: 3s; }
+        .icon5 { top: 68%; left: 8%;  animation-delay: 4s; }
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(-20px) scale(1.1); }
+        }
+        .title {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            color: #333;
+            z-index: 1;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;            
+            z-index: 1;           
+            width: 100%;
+            max-width: 1200px;    
+            justify-content: center;
+        }
+        .dish-card {
+            background-color: #fff;
+            width: 280px;             
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            overflow: hidden;         
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }   
+        .dish-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+        .dish-card-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+        .dish-card-body {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .dish-card-subtitle {
+            font-size: 14px;
+            color: #888;
+        }
+        .dish-card-title {
+            font-size: 18px;
+            color: #333;
+            margin: 4px 0;
+        }
+        .dish-card-description {
+            font-size: 14px;
+            color: #555;
+        }
+        .dish-card-footer {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .dish-card-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+        .dish-card-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-size: 14px;
+        }
+        .dish-card-button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1;
+        }
+        .footer button {
+            background: none;
+            border: none;
+            padding: 30px;
+        }
+        .footer img {
+            width: 30px;
+            cursor: pointer;
+        }
+        @media (max-width: 420px) {
+            .dish-card {
+                width: 90%; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="https://img.icons8.com/ios/100/apple.png" class="floating-icon icon1" />
+    <img src="https://img.icons8.com/ios/100/dumbbell.png" class="floating-icon icon2" />
+    <img src="https://img.icons8.com/ios/100/water-bottle.png" class="floating-icon icon3" />
+    <img src="https://img.icons8.com/ios/100/salad.png" class="floating-icon icon4" />
+    <img src="https://img.icons8.com/ios/100/treadmill.png" class="floating-icon icon5" />
+    <h2 class="title">Lunch</h2>
+    <div class="container">
+        <div class="dish-card">
+          <img src="https://image.freepik.com/free-photo/sambar-rice-sambar-sadam-one-pot-meal-from-south-indian-state-tamil-nadu-kerala_466689-75223.jpg" alt="Rice With Sambar" class="dish-card-img" />
+          <div class="dish-card-body">
+            <p class="dish-card-subtitle">Lunch</p>
+            <h3 class="dish-card-title">Rice With Sambar</h3>
+            <p class="dish-card-description">A classic South Indian dish served with sambar</p>
+            <div class="dish-card-footer">
+              <span class="dish-card-price">430 kcal</span>
+              <button class="dish-card-button" onclick="addCalories(430)">Add</button>
+            </div>
+          </div>
+        </div>
+        <div class="dish-card">
+          <img src="https://yoga-xperience.de/wp-content/uploads/2016/08/Chapati-vm2002-Fotolia-1024x576.jpg" alt="Chapathi With Sambar" class="dish-card-img" />
+          <div class="dish-card-body">
+            <p class="dish-card-subtitle">Lunch</p>
+            <h3 class="dish-card-title">Chapathi With Sambar</h3>
+            <p class="dish-card-description">Chapathi paired with aromatic sambar</p>
+            <div class="dish-card-footer">
+              <span class="dish-card-price">200 kcal</span>
+              <button class="dish-card-button" onclick="addCalories(200)">Add</button>
+            </div>
+          </div>
+        </div>
+        <div class="dish-card">
+          <img src="https://www.licious.in/blog/wp-content/uploads/2020/12/Chicken-Wrap.jpg" alt="Chicken Wrap" class="dish-card-img" />
+          <div class="dish-card-body">
+            <p class="dish-card-subtitle">Lunch</p>
+            <h3 class="dish-card-title">Chicken Wrap</h3>
+            <p class="dish-card-description">Tasty and filling chicken wrap</p>
+            <div class="dish-card-footer">
+              <span class="dish-card-price">300 kcal</span>
+              <button class="dish-card-button" onclick="addCalories(300)">Add</button>
+            </div>
+          </div>
+        </div>
+        <div class="dish-card">
+          <img src="https://myfoodstory.com/wp-content/uploads/2021/10/Dragon-Chicken-3.jpg" alt="Dragon Chicken" class="dish-card-img" />
+          <div class="dish-card-body">
+            <p class="dish-card-subtitle">Lunch</p>
+            <h3 class="dish-card-title">Dragon Chicken</h3>
+            <p class="dish-card-description">Spicy and crispy Dragon chicken</p>
+            <div class="dish-card-footer">
+              <span class="dish-card-price">500 kcal</span>
+              <button class="dish-card-button" onclick="addCalories(500)">Add</button>
+            </div>
+          </div>
+        </div>
+        <div class="dish-card">
+          <img src="https://th.bing.com/th/id/OIP.5bwyvob-f_lzjgfGYwav3wAAAA?rs=1&pid=ImgDetMain" alt="Curd Rice" class="dish-card-img" />
+          <div class="dish-card-body">
+            <p class="dish-card-subtitle">Lunch</p>
+            <h3 class="dish-card-title">Curd Rice</h3>
+            <p class="dish-card-description">Refreshing and creamy curd rice</p>
+            <div class="dish-card-footer">
+              <span class="dish-card-price">370 kcal</span>
+              <button class="dish-card-button" onclick="addCalories(370)">Add</button>
+            </div>
+          </div>
+        </div>
+        <div class="dish-card" style="width: 100%;">
+          <div class="dish-card-body" style="text-align: center;">
+            <button class="dish-card-button" style="background-color: #3674B5;" onclick="measureCalories()">
+              Calories for Lunch
+           </button>
+          </div>
+        </div>
+    </div>
+    <div class="footer">
+        <button onclick="gotohome()">
+          <a href="food.html"><img src="https://img.icons8.com/ios-filled/50/home.png" alt="Home Icon"/></a>
+        </button>
+        <!--
+        <button onclick="gotomenu()">
+          <img src="https://img.icons8.com/ios-filled/50/shop.png" alt="Shop Icon"/>
+        </button>-->
+    </div>
+    <script>
+        let totalCalories = 0;
+        function addCalories(amount) {
+            totalCalories += amount;
+        }
+        function measureCalories() {
+            alert("Total: " + totalCalories + " kcal");
+            localStorage.setItem("lunchCalories", totalCalories);
+            window.location.href = "food.html";
+        }
+        function goToHome() {
+            window.location.href = "home.html";
+        }
+        function goToMenu() {
+            window.location.href = "menu.html";
+        }
+    </script>
+</body>
+</html>

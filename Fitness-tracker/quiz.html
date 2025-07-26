@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            background: linear-gradient(rgba(173, 216, 230, 0.7), rgba(173, 216, 230, 0.7)), 
+                        url('https://images.pexels.com/photos/3771069/pexels-photo-3771069.jpeg') 
+                        no-repeat center center/cover;
+            padding: 20px;
+            animation: fadeInBg 1.5s ease-in-out;
+        }
+
+        @keyframes fadeInBg {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInQuiz 1.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeInQuiz {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .options button {
+            background-color: #007BFF;
+            color: white;
+            font-size: 1rem;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .options button:hover {
+            background-color: #0056b3;
+        }
+
+        .progress {
+            height: 10px;
+            width: 100%;
+            background: #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #007bff;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .summary {
+            display: none;
+            font-size: 1rem;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .result {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #007bff;
+        }
+        .rst{
+          background-color: #007BFF;
+            color: white;
+            font-size: 1.2rem;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h2>Sleep Quiz</h2>
+        <div class="progress">
+            <div class="progress-bar"></div>
+        </div>
+        <p id="question">Loading...</p>
+        <div class="options">
+            <button onclick="selectAnswer(0)">Option 1</button>
+            <button onclick="selectAnswer(1)">Option 2</button>
+            <button onclick="selectAnswer(2)">Option 3</button>
+            <button onclick="selectAnswer(3)">Option 4</button>
+        </div>
+        <div class="summary" id="summary"></div>
+        <p class="result" id="result"></p>
+    </div>
+
+    <script>
+        const quizData = [
+            { question: "How many hours of sleep do you get?", options: ["Less than 4", "4-6", "6-8", "More than 8"], score: [1, 2, 3, 4] },
+            { question: "Do you wake up feeling rested?", options: ["Never", "Rarely", "Sometimes", "Always"], score: [1, 2, 3, 4] },
+            { question: "How often do you wake up at night?", options: ["Always", "Often", "Sometimes", "Rarely"], score: [1, 2, 3, 4] },
+            { question: "Do you take naps during the day?", options: ["Never", "Rarely", "Sometimes", "Often"], score: [1, 2, 3, 4] },
+            { question: "How quickly do you fall asleep?", options: ["Less than 5 min", "5-15 min", "15-30 min", "More than 30 min"], score: [4, 3, 2, 1] },
+            { question: "Do you use electronics before bed?", options: ["Always", "Often", "Sometimes", "Rarely"], score: [1, 2, 3, 4] },
+            { question: "Do you feel tired in the morning?", options: ["Always", "Often", "Sometimes", "Rarely"], score: [1, 2, 3, 4] },
+            { question: "Do you snore while sleeping?", options: ["Never", "Rarely", "Sometimes", "Often"], score: [4, 3, 2, 1] },
+            { question: "Do you have a consistent sleep schedule?", options: ["Never", "Rarely", "Sometimes", "Always"], score: [1, 2, 3, 4] },
+            { question: "Do you drink caffeine before bed?", options: ["Always", "Often", "Sometimes", "Rarely"], score: [1, 2, 3, 4] },
+            { question: "Do you exercise regularly?", options: ["Never", "Rarely", "Sometimes", "Often"], score: [1, 2, 3, 4] },
+            { question: "Do you eat heavy meals before bed?", options: ["Always", "Often", "Sometimes", "Rarely"], score: [1, 2, 3, 4] },
+            { question: "Do you meditate or relax before sleep?", options: ["Never", "Rarely", "Sometimes", "Often"], score: [1, 2, 3, 4] },
+            { question: "Do you experience nightmares?", options: ["Never", "Rarely", "Sometimes", "Often"], score: [4, 3, 2, 1] },
+            { question: "Do you wake up at the same time daily?", options: ["Never", "Rarely", "Sometimes", "Always"], score: [1, 2, 3, 4] }
+        ];
+
+        let currentQuestion = 0;
+        let totalScore = 0;
+        let answers = [];
+
+        function loadQuestion() {
+            if (currentQuestion < quizData.length) {
+                document.getElementById("question").innerText = quizData[currentQuestion].question;
+                document.querySelectorAll(".options button").forEach((button, index) => {
+                    button.innerText = quizData[currentQuestion].options[index];
+                });
+                document.querySelector(".progress-bar").style.width = `${(currentQuestion / quizData.length) * 100}%`;
+            } else {
+                showSummary();
+            }
+        }
+
+        function selectAnswer(index) {
+            totalScore += quizData[currentQuestion].score[index];
+            answers.push({ question: quizData[currentQuestion].question, answer: quizData[currentQuestion].options[index] });
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function showSummary() {
+            document.querySelector(".quiz-container").innerHTML = `<h2>Quiz Summary</h2>
+                ${answers.map(a => `<p><b>${a.question}</b><br>Your Answer: ${a.answer}</p>`).join("")}
+                <p class="result">${getSleepScoreMessage(totalScore)}</p>
+                <button onclick="location.reload()" class="rst">Restart Quiz</button>`;
+        }
+
+        function getSleepScoreMessage(score) {
+            return score <= 20 ? "Poor sleep habits! 💤" : score <= 35 ? "Average sleep. Improve a bit! 😴" : "Great sleep routine! 🌙";
+        }
+
+        loadQuestion();
+    </script>
+
+</body>
+</html>

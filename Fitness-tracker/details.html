@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Details</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #4FACFE, #00F2FE);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        /* Floating Background Objects */
+        .floating {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: floatAnimation 5s infinite ease-in-out alternate;
+            filter: blur(7px);
+        }
+
+        .floating:nth-child(1) { width: 90px; height: 90px; top: 5%; left: 12%; animation-duration: 6s; }
+        .floating:nth-child(2) { width: 60px; height: 60px; bottom: 10%; right: 15%; animation-duration: 8s; }
+        .floating:nth-child(3) { width: 70px; height: 70px; top: 45%; left: 30%; animation-duration: 7s; }
+        .floating:nth-child(4) { width: 100px; height: 100px; top: 25%; right: 5%; animation-duration: 5s; }
+        .floating:nth-child(5) { width: 50px; height: 50px; bottom: 5%; left: 20%; animation-duration: 9s; }
+
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px); opacity: 0.6; }
+            100% { transform: translateY(-15px); opacity: 0.3; }
+        }
+
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(15px);
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            margin: 50px 0;
+            transition: 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            font-size: 24px;
+            color: black;
+            font-weight: 700;
+        }
+
+        .profile-img {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            border: 3px solid black;
+            box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* User Details */
+        .details {
+            text-align: left;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.6);
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .details p {
+            font-size: 16px;
+            margin: 8px 0;
+            font-weight: 400;
+            color: black;
+        }
+
+        .details span {
+            font-weight: bold;
+            color: #FF5733;
+        }
+
+        /* Sleep Container */
+        .sleep-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .progress-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: conic-gradient(#ff4b5c 290deg, #ddd 290deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            box-shadow: 0px 0px 20px rgba(255, 75, 92, 0.6);
+            animation: pulse 1.8s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        .sleep-text {
+            margin-top: 10px;
+            font-size: 18px;
+            color: black;
+            font-weight: bold;
+        }
+
+        /* Footer Icons */
+        .footer {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .footer button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .footer img {
+            width: 60px;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: 0.3s;
+        }
+
+        .footer img:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(1.15);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Background Elements -->
+    <div class="floating"></div>
+    <div class="floating"></div>
+    <div class="floating"></div>
+    <div class="floating"></div>
+    <div class="floating"></div>
+
+    <div class="container">
+        <div class="header">
+            <h2>My Details</h2>
+            <img src="pic.png" alt="Profile Picture" class="profile-img">
+        </div>
+
+        <!-- User Details -->
+        <div class="details">
+            <p>Name - <span id="name">Shruti</span></p>
+            <p>Steps Covered - <span id="steps">6000</span></p>
+            <p>Calories Burnt - <span id="calories">1470</span> kcal</p>
+            <p>Height - <span>6 ft</span></p>
+            <p>Weight - <span id="weight">99</span> Kg</p>
+            <p>Age - <span>19</span></p>
+            <p>Phone - <span>93*****10</span></p>
+        </div>
+
+        <!-- Sleep Hours -->
+        <div class="sleep-container">
+            <div class="progress-circle">13h</div>
+            <p class="sleep-text">Hours Slept <span>13</span></p>
+        </div>
+    </div>
+
+    <!-- Footer Navigation -->
+    <div class="footer">
+        <button onclick="goToHome()">
+            <img src="https://img.icons8.com/fluency/50/home.png" alt="Home Icon">
+        </button>
+        <button onclick="goToMenu()">
+            <img src="https://img.icons8.com/fluency/50/shop.png" alt="Shop Icon">
+        </button>
+    </div>
+
+    <script>
+        function goToHome() {
+            window.location.href = "index.html"; 
+        }
+
+        function goToMenu() {
+            window.location.href = "menu.html"; 
+        }
+    </script>
+</body>
+</html>
+

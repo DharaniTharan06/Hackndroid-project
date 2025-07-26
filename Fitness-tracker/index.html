@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthHub - Dashboard</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #e0f2fe;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            height: 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #0284c7;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #334155;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: #0284c7;
+            color: white;
+        }
+
+        /* Dashboard Layout */
+        .dashboard {
+            padding-top: 80px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-inline: 1rem;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .profile-photo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #0284c7;
+            cursor: pointer;
+        }
+
+        .profile-info h2 {
+            font-size: 1.75rem;
+            color: #0f172a;
+        }
+
+        .profile-details {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0284c7;
+        }
+
+        /* Chart Section */
+        .chart-section {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .chart-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chart-control-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e2e8f0;
+            background: white;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .chart-control-btn.active {
+            background: #0284c7;
+            color: white;
+            border-color: #0284c7;
+        }
+
+        #calorieChart {
+            width: 100%;
+            height: 250px;
+        }
+
+        /* Workout Section */
+        .workout-section {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .workout-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .workout-item {
+            background-color: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            color: #334155;
+            border-left: 5px solid #0284c7;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <i data-lucide="brain"></i>
+                <span>HealthHub</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" id="index">Dashboard</a>
+                <a href="sleep.html" id="sleep">Sleep</a>
+                <a href="fitness.html" id="fitness">Fitness</a>
+                <a href="food.html" id="food">Food</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard -->
+    <div class="dashboard">
+
+        <!-- Profile Section -->
+        <section class="profile-section">
+            <img src="pic.png" alt="Profile Photo" class="profile-photo" onclick="location.href='profile.html'">
+            <div class="profile-info">
+                <h2>Shruti</h2>
+                <div class="profile-details">
+                    <div>Height: <span>5'9"</span></div>
+                    <div>Weight: <span>75 kg</span></div>
+                    <div>BMI: <span>24.1</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calorie Intake Chart -->
+        <section class="chart-section">
+            <h2>
+                Calorie Intake
+                <div class="chart-controls">
+                    <button class="chart-control-btn active" data-period="day">Day</button>
+                    <button class="chart-control-btn" data-period="week">Week</button>
+                    <button class="chart-control-btn" data-period="month">Month</button>
+                </div>
+            </h2>
+            <canvas id="calorieChart"></canvas>
+        </section>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const pageId = window.location.pathname.split("/").pop().split(".")[0];
+        document.getElementById(pageId)?.classList.add("active");
+
+        const chartData = {
+            day: { labels: ['Breakfast', 'Lunch', 'Snack', 'Dinner'], data: [400, 650, 200, 750] },
+            week: { labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], data: [2100, 2300, 1950, 2200, 2400, 2150, 2000] },
+            month: { labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'], data: [15400, 14800, 15200, 14900] }
+        };
+
+        const ctx = document.getElementById('calorieChart').getContext('2d');
+        let calorieChart = new Chart(ctx, {
+            type: 'bar',
+            data: { labels: chartData.day.labels, datasets: [{ label: 'Calories', data: chartData.day.data, backgroundColor: '#0284c7' }] }
+        });
+
+        document.querySelectorAll('.chart-control-btn').forEach(btn => btn.addEventListener('click', function () {
+            document.querySelectorAll('.chart-control-btn').forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            calorieChart.data.labels = chartData[this.dataset.period].labels;
+            calorieChart.data.datasets[0].data = chartData[this.dataset.period].data;
+            calorieChart.update();
+        }));
+    </script>
+
+</body>
+</html>

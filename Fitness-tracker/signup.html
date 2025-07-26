@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthHub - Create an Account</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* 🔥 Animated Background */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #e0f7fa, #d1f0ff, #e3f2fd, #b2dfdb);
+            background-size: 300% 300%;
+            animation: gradientBG 10s infinite ease-in-out;
+            position: relative;
+            width: 100%;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 🔥 Floating Icons */
+        .floating-icon {
+            position: absolute;
+            width: 70px;
+            opacity: 0.6;
+            animation: floatAnimation 6s infinite alternate ease-in-out;
+        }
+
+        .icon1 { top: 5%; left: 5%; }
+        .icon2 { top: 50%; right: 5%; }
+        .icon3 { bottom: 10%; left: 50%; }
+        .icon4 { bottom: 30%; right: 20%; }
+        .icon5 { top: 75%; left: 5%; }
+
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(-15px) scale(1.1); }
+        }
+
+        /* 🔥 Extended Full-Page Container */
+        .container {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            width: 480px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            min-height: 85vh; /* Makes it extend */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        /* 🔥 Profile Picture Upload */
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #3498db;
+            background-color: #f5f5f5;
+        }
+
+        .upload-btn {
+            margin-top: 10px;
+            padding: 8px 14px;
+            font-size: 14px;
+            cursor: pointer;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .upload-btn:hover {
+            background: #2980b9;
+        }
+
+        /* 🔥 Input Fields */
+        .input-group {
+            text-align: left;
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .input-field {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.7);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 14px;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .input-field input {
+            width: 100%;
+            border: none;
+            background: transparent;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .input-field:focus-within {
+            border-color: #3498db;
+            box-shadow: 0 0 12px #3498db;
+        }
+
+        /* 🔥 Button */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: #3498db;
+            color: white;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .login-link {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .login-link a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 25px;
+                min-height: 90vh; /* Makes sure it fills mobile screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Icons -->
+    <img src="https://img.icons8.com/ios/100/apple.png" class="floating-icon icon1">
+    <img src="https://img.icons8.com/ios/100/dumbbell.png" class="floating-icon icon2">
+    <img src="https://img.icons8.com/ios/100/water-bottle.png" class="floating-icon icon3">
+    <img src="https://img.icons8.com/ios/100/salad.png" class="floating-icon icon4">
+    <img src="https://img.icons8.com/ios/100/treadmill.png" class="floating-icon icon5">
+
+    <div class="container">
+        <form id="signupForm" action="/signup" method="POST">
+            <h2>Join HealthHub</h2>
+
+            <!-- Profile Picture Upload -->
+            <div class="profile-container">
+                <img src="https://img.icons8.com/ios-filled/100/user.png" class="profile-pic" id="profilePic">
+                <input type="file" id="fileInput" name="profile_picture" hidden>
+                <button type="button" class="upload-btn" onclick="document.getElementById('fileInput').click()">Upload Photo</button>
+            </div>
+
+            <div class="input-group">
+                <label>First Name</label>
+                <div class="input-field">
+                    <input type="text" name="first_name" placeholder="Enter your first name" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <div class="input-field">
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <div class="input-field">
+                    <input type="password" name="password" placeholder="Enter your password" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Create Account</button>
+
+            <p class="login-link">Already have an account? <a href="login.html">Login</a></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Here you would typically send the form data to the server
+            // For demonstration, we're using an alert
+            alert("Account created successfully! Please log in.");
+            window.location.href = "login.html";
+        });
+
+        // Profile picture preview
+        document.getElementById("fileInput").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("profilePic").src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

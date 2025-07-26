@@ -1,0 +1,287 @@
+/* Common styles from landing page */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: #e0f2fe;
+    min-height: 100vh;
+}
+
+/* Navigation */
+nav {
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+}
+
+.nav-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #0284c7;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.login-link {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: #4b5563;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.login-link:hover {
+    color: #0284c7;
+}
+
+/* Form Styles */
+.form-container {
+    max-width: 800px;
+    margin: 100px auto 40px;
+    padding: 2rem;
+}
+
+.fitness-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.fitness-form h2 {
+    color: #0284c7;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #4b5563;
+    font-weight: 500;
+}
+
+.form-group select,
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: normal;
+}
+
+.primary-button {
+    background-color: #0284c7;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.primary-button:hover {
+    background-color: #0369a1;
+}
+
+/* Dashboard Styles */
+.dashboard-container {
+    max-width: 1280px;
+    margin: 100px auto 40px;
+    padding: 0 1rem;
+}
+
+.dashboard-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.dashboard-header h1 {
+    color: #0284c7;
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.dashboard-header p {
+    color: #4b5563;
+    font-size: 0.875rem;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.dashboard-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card h3 {
+    color: #0284c7;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.progress-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    text-align: center;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0284c7;
+}
+
+.stat-label {
+    color: #4b5563;
+    font-size: 0.875rem;
+}
+
+.chart-container {
+    height: 300px;
+    position: relative;
+}
+
+.workout-exercise {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.workout-exercise:last-child {
+    border-bottom: none;
+}
+
+.exercise-name {
+    font-weight: 500;
+    color: #111827;
+}
+
+.exercise-detail {
+    color: #4b5563;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.metric {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.metric-name {
+    color: #4b5563;
+}
+
+.metric-value {
+    font-weight: 500;
+    color: #111827;
+}
+
+.trend-up {
+    color: #059669;
+}
+
+.trend-down {
+    color: #dc2626;
+}
+
+.trend-stable {
+    color: #9ca3af;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .progress-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-header h1 {
+        font-size: 2rem;
+    }
+
+    .fitness-form h2 {
+        font-size: 1.75rem;
+    }
+}

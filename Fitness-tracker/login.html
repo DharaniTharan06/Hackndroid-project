@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lato', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #BEE3FA, #E0F7FA);
+            position: relative;
+        }
+
+        /* Floating Icons */
+        .floating-icon {
+            position: absolute;
+            width: 50px;
+            opacity: 0.8;
+            animation: floatAnimation 5s infinite ease-in-out alternate;
+        }
+
+        .icon1 { top: 10%; left: 10%; animation-duration: 6s; }
+        .icon2 { top: 20%; right: 15%; animation-duration: 7s; }
+        .icon3 { bottom: 10%; left: 20%; animation-duration: 8s; }
+        .icon4 { bottom: 15%; right: 10%; animation-duration: 6s; }
+
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-20px); }
+        }
+
+        /* Login Container */
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 380px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-field {
+            display: flex;
+            align-items: center;
+            background: #E6F5FF;
+            border: 1px solid #B0DAF1;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .input-field input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            padding-left: 10px;
+            background: transparent;
+            color: #333;
+        }
+
+        .input-field img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .remember-me input {
+            margin-right: 5px;
+        }
+
+        .forgot-password {
+            color: #3D8FDB;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #3D8FDB;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            outline: none;
+        }
+
+        .btn:hover {
+            background: #2A76C7;
+        }
+
+        .loading {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .signup-link {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .signup-link a {
+            color: #3D8FDB;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 400px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Icons -->
+    <img src="https://img.icons8.com/ios-filled/50/salad.png" alt="Salad" class="floating-icon icon1">
+    <img src="https://img.icons8.com/ios-filled/50/dumbbell.png" alt="Dumbbell" class="floating-icon icon2">
+    <img src="https://img.icons8.com/ios-filled/50/avocado.png" alt="Avocado" class="floating-icon icon3">
+    <img src="https://img.icons8.com/ios-filled/50/yoga.png" alt="Yoga" class="floating-icon icon4">
+
+    <div class="container">
+        <form id="loginForm">
+            <h2>Login to Your Account</h2>
+
+            <div class="input-group">
+                <label>Email</label>
+                <div class="input-field">
+                    <input type="email" id="email" placeholder="Enter your email">
+                    <img src="https://img.icons8.com/ios-filled/50/new-post.png" alt="Email Icon">
+                </div>
+                <p class="error-message" id="emailError">Invalid email format!</p>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <div class="input-field">
+                    <input type="password" id="password" placeholder="Enter your password">
+                    <img src="https://img.icons8.com/ios-filled/50/lock.png" alt="Lock Icon">
+                </div>
+                <p class="error-message" id="passwordError">Password must be at least 6 characters!</p>
+            </div>
+
+            <div class="remember-me">
+                <label><input type="checkbox" id="rememberMe"> Remember Me</label>
+                <a href="#" class="forgot-password">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+
+            <div class="loading">
+                <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading" width="40">
+            </div>
+
+            <p class="signup-link">Don't have an account? <a href="create.html">Sign Up</a></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let emailError = document.getElementById("emailError");
+            let passwordError = document.getElementById("passwordError");
+            let loading = document.querySelector(".loading");
+
+            emailError.style.display = "none";
+            passwordError.style.display = "none";
+
+            if (!email.includes("@") || !email.includes(".")) {
+                emailError.style.display = "block";
+                return;
+            }
+
+            if (password.length < 6) {
+                passwordError.style.display = "block";
+                return;
+            }
+
+            loading.style.display = "block";
+
+            setTimeout(() => {
+                loading.style.display = "none";
+                alert("Login successful!");
+                window.location.href = "dashboard.html";
+            }, 2000);
+        });
+    </script>
+
+</body>
+</html>

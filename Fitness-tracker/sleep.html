@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Tracking Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            background: linear-gradient(rgba(173, 216, 230, 0.7), rgba(173, 216, 230, 0.7)), 
+                        url('https://images.pexels.com/photos/3771069/pexels-photo-3771069.jpeg') 
+                        no-repeat center center/cover;
+            padding: 20px;
+            animation: fadeInBg 1.5s ease-in-out;
+        }
+
+        @keyframes fadeInBg {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(5, 5, 20, 0.6);
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInText 1.5s ease-in-out forwards;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #ddd;
+            max-width: 600px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(5, 5, 10, 0.5);
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInText 1.5s ease-in-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .start-btn {
+            background-color: #007BFF;
+            color: white;
+            font-size: 1.2rem;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .start-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .floating-icon {
+            position: absolute;
+            width: 50px;
+            opacity: 0.7;
+            animation: floatAnimation 6s infinite alternate ease-in-out;
+        }
+
+        .icon1 { top: 20%; left: 20%; }
+        .icon2 { bottom: 20%; left: 20%; }
+        .icon3 { top: 10%; left: 40%; }
+        .icon4 { bottom: 10%; left: 40%; }
+        .icon5 { top: 20%; right: 20%; }
+        .icon6 { bottom: 20%; right: 20%; }
+        .icon7 { top: 10%; right: 40%; }
+        .icon8 { bottom: 10%; right: 40%; }
+        .icon9 { top: 50%; right: 10%; }
+        .icon10 { top: 50%; left: 10%; }
+
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-15px); }
+        }
+    </style>
+</head>
+<body>
+    <h1>How Well Do You Sleep?</h1>
+    <p>Take our quick sleep tracking quiz to find out how healthy your sleep habits are and get personalized tips to improve your rest.</p>
+    <button class="start-btn" onclick="startQuiz()">Start Quiz</button>
+
+    <!-- Floating Icons -->
+    <img src="https://img.icons8.com/?size=100&id=9QQ7dhBYnL04&format=png&color=000000" class="floating-icon icon1">
+    <img src="https://img.icons8.com/?size=100&id=9QQ7dhBYnL04&format=png&color=000000" class="floating-icon icon2">
+    <img src="https://img.icons8.com/?size=100&id=58771&format=png&color=000000" class="floating-icon icon3">
+    <img src="https://img.icons8.com/?size=100&id=58771&format=png&color=000000" class="floating-icon icon4">
+    <img src="https://img.icons8.com/?size=100&id=1459&format=png&color=000000" class="floating-icon icon5">
+    <img src="https://img.icons8.com/?size=100&id=1459&format=png&color=000000" class="floating-icon icon6">
+    <img src="https://img.icons8.com/?size=100&id=14385&format=png&color=000000" class="floating-icon icon7">
+    <img src="https://img.icons8.com/?size=100&id=14385&format=png&color=000000" class="floating-icon icon8">
+    <img src="https://img.icons8.com/?size=100&id=MiB2bvr7uGVu&format=png&color=000000" class="floating-icon icon9">
+    <img src="https://img.icons8.com/?size=100&id=MiB2bvr7uGVu&format=png&color=000000" class="floating-icon icon10">
+    
+    <script>
+        function startQuiz() {
+            window.location.href = "quiz.html"; // Redirect to the quiz page
+        }
+    </script>
+</body>
+</html>
