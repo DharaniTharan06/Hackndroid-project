@@ -38,3 +38,9 @@ This project was developed with a strong focus on clean UI, seamless navigation,
 
 ## 📂 File Structure
 
+### 🚀 Getting Started
+
+To run the project locally:
+
+1. **Clone the repository**
+   git clone https://github.com/your-username/hackathon-health-habit-tracker.git
